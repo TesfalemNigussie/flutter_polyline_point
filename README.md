@@ -1,39 +1,45 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# flutter_polyline_point
+A flutter plugin that decodes encoded google polyline string into list of geo-coordinates suitable for showing route/polyline on maps
+This package is extension of <a href ="https://pub.dev/packages/flutter_polyline_points"> flutter_polyline_points </a>.
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages).
+<div style="text-align: center"><table><tr>
+  <td style="text-align: center">
+  <a href="https://raw.githubusercontent.com/TesfalemNigussie/flutter_polyline_point/main/poly.jpeg">
+    <img src="https://raw.githubusercontent.com/TesfalemNigussie/flutter_polyline_point/main/poly.jpeg" width="200"/></a>
+</td>
+</tr></table></div>
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages).
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
-
-## Features
-
-TODO: List what your package can do. Maybe include images, gifs, or videos.
-
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+## Getting Started
+This package contains functions to decode google encoded polyline string which returns a list of co-ordinates
+indicating route between two geographical position
 
 ## Usage
+To use this package, add flutter_polyline_points as a [dependency in your pubspec.yaml file](https://flutter.dev/docs/development/packages-and-plugins/using-packages).
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
-
+## Import the package
 ```dart
-const like = 'sample';
+import 'package:flutter_polyline_point/flutter_polyline_point.dart';
 ```
 
-## Additional information
+## First method
+Get the list of points by Geo-coordinate, this return an instance of PolylineResult, which
+contains the status of the api, the errorMessage, and the list of decoded points.
+```dart
+PolylinePoints polylinePoints = PolylinePoints();
+PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(googleAPiKey,
+        _originLatitude, _originLongitude, _destLatitude, _destLongitude);
+print(result.points);
+```
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+## Second method
+Decode an encoded google polyline string e.g _p~iF~ps|U_ulLnnqC_mqNvxq`@
+```dart
+List<PointLatLng> result = polylinePoints.decodePolyline("_p~iF~ps|U_ulLnnqC_mqNvxq`@");
+print(result);
+``` 
+
+See the example directory for a complete sample app
+
+## Hint
+kindly ensure you use a valid google api key,  
+[If you need help generating api key for your project click this link](https://developers.google.com/maps/documentation/directions/get-api-key)

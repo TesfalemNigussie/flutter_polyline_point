@@ -1,7 +1,7 @@
 name: flutter_polyline_point
 description: A flutter plugin that decodes encoded google polyline string into list of geo-coordinates suitable for showing route/polyline on maps
 version: 0.0.1
-homepage:
+homepage: https://github.com/TesfalemNigussie/flutter_polyline_point
 environment:
   sdk: '>=3.0.5 <4.0.0'
   flutter: ">=1.17.0"
